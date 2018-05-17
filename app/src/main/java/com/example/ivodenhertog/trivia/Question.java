@@ -4,13 +4,13 @@ public class Question {
     // Variables
     private String question;
     private String[] answers;
-    private String correstAnswer;
+    private String correctAnswer;
 
     // Constructor
     public Question(String question, String[] answers, String correstAnswer) {
         this.question = question;
         this.answers = answers;
-        this.correstAnswer = correstAnswer;
+        this.correctAnswer = correstAnswer;
     }
 
     public String getQuestion() {
@@ -30,10 +30,10 @@ public class Question {
     }
 
     public String getCorrestAnswer() {
-        return correstAnswer;
+        return correctAnswer;
     }
 
     public void setCorrestAnswer(String correstAnswer) {
-        this.correstAnswer = correstAnswer;
+        this.correctAnswer = correstAnswer;
     }
 }

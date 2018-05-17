@@ -47,5 +47,10 @@
     <string name="logout">Log Out</string>
     <string name="about">About</string>
     <string name="about_toast">About Placehodler</string>
+    <string name="question_result">Correct/Wrong!</string>
+    <string name="next_question">Next Question</string>
+    <string name="result_correct">Correct!</string>
+    <string name="result_wrong">Wrong!</string>
+    <string name="get_question">Hold on, we are searching for a good question!</string>
 
 </resources>
