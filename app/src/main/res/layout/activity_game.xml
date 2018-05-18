@@ -9,7 +9,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <FrameLayout
             android:id="@+id/resultView"
@@ -92,6 +92,7 @@
                     android:ems="10"
                     android:hint="@string/answer"
                     android:inputType="textPersonName"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/gameSubmit"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />

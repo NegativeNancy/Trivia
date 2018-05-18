@@ -49,33 +49,23 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     private static final String TAG = "LoginActivity";
-    private FirebaseAuth mAuth;
 
     /**
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-
-//    /**
-//     * A dummy authentication store containing known user names and passwords.
-//     * TODO: remove after connecting to a real authentication system.
-//     */
-//    private static final String[] DUMMY_CREDENTIALS = new String[]{
-//            "foo@example.com:hello", "bar@example.com:world"
-//    };
-
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
+    private FirebaseAuth mAuth;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private TextView createAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -215,13 +205,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 8;
+        return password.length() > 4;
     }
 
     /**
@@ -309,7 +297,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         };
 
         int ADDRESS = 0;
-        int IS_PRIMARY = 1;
     }
 
     /**

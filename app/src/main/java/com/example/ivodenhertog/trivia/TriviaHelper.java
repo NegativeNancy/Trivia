@@ -16,31 +16,43 @@ import org.json.JSONObject;
 
 public class TriviaHelper implements Response.Listener<JSONArray>, Response.ErrorListener {
 
-    private Context globalContext;
+    private final Context globalContext;
     private Callback globalActivity;
-    private final String URL_MENU = "http://jservice.io/api/random";
 
-    /* Callback to be used by other activities */
+    /**
+     * Callback to be used by other activities
+     **/
     public interface Callback {
         void gotQuestion(Question question);
         void gotError(String message);
     }
 
+    /**
+     * Get the current context and make it global.
+     * @param context used to set globalContext
+     **/
     public TriviaHelper(Context context) {
         globalContext = context;
     }
 
+    /**
+     * Request new question.
+     * @param activity used to set globalActivity
+     */
     public void getNextQuestion(Callback activity) {
         globalActivity = activity;
 
         RequestQueue queue = Volley.newRequestQueue(globalContext);
+        String URL_MENU = "http://jservice.io/api/random";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URL_MENU,
                 null, this, this);
         queue.add(jsonArrayRequest);
     }
 
 
-    /* On successful JSON response store data in JSON String Array. */
+    /**
+     * On successful JSON response store data in JSON String Array.
+     **/
     @Override
     public void onResponse(JSONArray response) {
         try {
@@ -58,7 +70,9 @@ public class TriviaHelper implements Response.Listener<JSONArray>, Response.Erro
         }
     }
 
-    /* On error return error message. */
+    /**
+     * On error return error message.
+     **/
     @Override
     public void onErrorResponse(VolleyError error) {
         globalActivity.gotError(error.getMessage());

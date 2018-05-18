@@ -12,7 +12,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,8 +21,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -32,12 +29,10 @@ public class SignupActivity extends AppCompatActivity {
     private AutoCompleteTextView emailView;
     private EditText passwordView;
     private EditText confirmPasswordView;
-    private Button signupBtnView;
 
     private View progressView;
     private View submitFormView;
 
-    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
     @Override
@@ -45,7 +40,6 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
         // Find all the views in this activity
@@ -55,9 +49,11 @@ public class SignupActivity extends AppCompatActivity {
         emailView = findViewById(R.id.signupEmail);
         passwordView = findViewById(R.id.signupPassword);
         confirmPasswordView = findViewById(R.id.signupConfirmPassword);
-        signupBtnView = findViewById(R.id.signupSubmit);
     }
 
+    /**
+     * Get info of user.
+     **/
     @Override
     public void onStart() {
         super.onStart();
@@ -66,6 +62,9 @@ public class SignupActivity extends AppCompatActivity {
         updateUI(currentUser);
     }
 
+    /**
+     * User currentUser to sign in the user.
+     **/
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
             Intent main = new Intent(SignupActivity.this, MainActivity.class);
@@ -75,12 +74,19 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Send user to login activity.
+     */
     public void loginClicked(View view) {
         Intent login = new Intent(SignupActivity.this, LoginActivity.class);
         startActivity(login);
         finish();
     }
 
+    /**
+     * Submit user input and create account.
+     * Use this new account to log user in.
+     */
     public void submitClicked(View view) {
         Boolean cancel = false;
 
@@ -136,6 +142,9 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Create the user.
+     */
     private void createUser() {
 
         final String username = usernameView.getText().toString();
@@ -214,14 +223,30 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Check if the email is valid.
+     * @param email this is the users email address.
+     * @return return true or false based on result
+     */
     private boolean isEmailValid(String email) {
         return email.contains("@") && email.contains(".");
     }
 
+    /**
+     * Check if password is long enough.
+     * @param password contains the users password.
+     * @return return true or false based on result
+     */
     private boolean isPasswordValid(String password) {
         return password.length() > 8;
     }
 
+    /**
+     * Check if passwords are the same.
+     * @param password contains the users password.
+     * @param confirmPassword contains the users confirmation password.
+     * @return return true or false based on result
+     */
     private boolean isPasswordSame(String password, String confirmPassword) {
         return password.equals(confirmPassword);
     }

@@ -11,15 +11,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Logger;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-    private String TAG = "MainActivity";
+    private final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
 
     @Override
@@ -27,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Log.d(TAG, "onCreate: " + currentUser.getEmail());
     }
 
     @Override
@@ -37,20 +34,21 @@ public class MainActivity extends AppCompatActivity {
         updateUI(currentUser);
     }
 
+    /**
+     * Force exit on back press in main menu.
+     */
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    /**
+     *  Update Firebase user
+     **/
     private void updateUI(FirebaseUser currentUser) {
-//        hideProgressDialog();
         if (currentUser != null) {
             // Name, email address, and profile photo Url
             String name = currentUser.getDisplayName();
-            String email = currentUser.getEmail();
-
-            // Check if user's email is verified
-            boolean emailVerified = currentUser.isEmailVerified();
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            String uid = currentUser.getUid();
 
             Log.d(TAG, "updateUI: username = " + name);
         } else {
@@ -59,23 +57,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *  Click listener for new game.
+     **/
     public void newGameClicked(View view) {
         Intent newGame = new Intent(MainActivity.this, GameActivity.class);
         startActivity(newGame);
     }
 
+    /**
+     * Click listener for highscore.
+     **/
     public void highscoreClicked(View view) {
         Intent newGame = new Intent(MainActivity.this, HighscoreActivity.class);
         startActivity(newGame);
     }
-    // Function to create on-screen menu.
+
+    /**
+     * Function to create on-screen menu.
+     **/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return(true);
     }
 
-    // Function that handles the events when menu button is pressed.
+    /**
+     * Function that handles the events when menu button is pressed.
+     **/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -83,9 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 mAuth.signOut();
                 updateUI(null);
                 return(true);
-            case R.id.about:
-                Toast.makeText(this, R.string.about_toast, Toast.LENGTH_LONG).show();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }

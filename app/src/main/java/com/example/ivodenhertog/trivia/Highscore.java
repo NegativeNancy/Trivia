@@ -1,14 +1,25 @@
 package com.example.ivodenhertog.trivia;
 
-public class Highscore {
+import android.support.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class Highscore implements Serializable, Comparable {
+    // Variables.
     private String name;
     private int score;
 
-    public Highscore(String name, int score) {
-        this.name = name;
-        this.score = score;
+    // Constructor for Firebase.
+    public Highscore(){
     }
 
+    // Normal Constructor
+    public Highscore(String name, int newScore) {
+        this.name = name;
+        this.score = this.score + newScore;
+    }
+
+    // Getters and setters.
     public String getName() {
         return name;
     }
@@ -21,7 +32,14 @@ public class Highscore {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScore(int newScore) {
+        this.score = newScore;
+    }
+
+    // Sort list.
+    @Override
+    public int compareTo(@NonNull Object o) {
+        int compareScore = ((Highscore) o).getScore();
+        return compareScore - this.score;
     }
 }

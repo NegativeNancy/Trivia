@@ -3,25 +3,17 @@
 
     <!-- Strings related to main activity -->
     <string name="game_title">MPROG Trivia!</string>
-    <string name="game_description">This is a temporary description placeholder. Something
-        interesting is going to be displayed here…</string>
+    <string name="game_description">An fully random Trivia game! All questions are gathered from an
+        online source.</string>
     <string name="new_game">New Game</string>
     <string name="highscore">Highscores</string>
-    <string name="login">Login*</string>
-    <string name="login_requirement">*Login to save your highscore</string>
+    <string name="login">Login</string>
 
     <!-- Strings related to game activity -->
-    <string name="placeholder">placeholder</string>
     <string name="answer">Answer</string>
     <string name="submit">Submit Answer</string>
 
-    <!-- Strings related to highscore activity -->
-
     <!-- Strings related to login activity -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -31,11 +23,11 @@
     </string>
 
     <!-- Strings related to activity titles -->
-    <string name="title_activity_login">Sign in</string>
     <string name="title_activity_game">MPROG Trivia</string>
     <string name="title_activity_highscore">Highscore</string>
     <string name="title_activity_signup">Signup</string>
-    <string name="title_activity_login2">Sign in</string>
+
+    <!-- All the other stuff -->
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -46,11 +38,12 @@
     <string name="no_account_yet_create_one">No account yet? Create one</string>
     <string name="logout">Log Out</string>
     <string name="about">About</string>
-    <string name="about_toast">About Placehodler</string>
+    <string name="about_toast">This game is created as an assignment for the minor Programming
+        from the UvA.</string>
     <string name="question_result">Correct/Wrong!</string>
     <string name="next_question">Next Question</string>
     <string name="result_correct">Correct!</string>
     <string name="result_wrong">Wrong!</string>
-    <string name="get_question">Hold on, we are searching for a good question!</string>
+    <string name="finish_game">Finish game</string>
 
 </resources>
